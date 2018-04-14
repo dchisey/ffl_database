@@ -23,7 +23,4 @@ exports.sortBy = function(req, res) {
 	}).sort({ Week: 'asc', Pts: 'desc' }).then(function(val) {
 		res.send(val);
 	})
-
-
-
 }
