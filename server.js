@@ -12,7 +12,7 @@ require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
 const URI = process.env.DB_URI;
-//const URI = 'mongodb://localhost/kaplanFfl'
+// const URI = 'mongodb://localhost/kaplanFfl'
 console.log(URI)
 
 mongoose.Promise = global.Promise;
@@ -21,12 +21,9 @@ mongoose.Promise = global.Promise;
 mongoose.set('debug', true);
 
 //open the connection to the database
-const conn = mongoose.createConnection(URI, {
-  useMongoClient: true,
+mongoose.connect(URI, {
   keepAlive: true
 })
-console.log(conn)
-
 
 
 //add middleware
@@ -39,9 +36,9 @@ app.use(function(req, res, next) {
 });
 
 //handle events from DB opening
-conn.on('error', console.error.bind(console, 'Connection error: '));
-conn.once('open', function() {
-	console.log('Connection to MongoDB is live. Database: ' + conn.name);
+mongoose.connection.on('error', console.error.bind(console, 'Connection error: '));
+mongoose.connection.once('open', function() {
+	console.log('Connection to MongoDB is live. Database: ' + mongoose.connection.name);
 })
 
 //pull in routes from routes.js

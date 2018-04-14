@@ -11,18 +11,23 @@ module.exports = function(app) {
 		const firstOwner = new RegExp(req.body.firstOwner, 'i');
 		const secondOwner = new RegExp(req.body.secondOwner, 'i');
 
-		WeeklyResult.find({ $or : [{ Owner: firstOwner }, { Owner: secondOwner }] })
-			.sort('Week Owner')
-			.exec((err, data) => {
-				if(err) console.log(err);
+		// WeeklyResult.find({ $or : [{ Owner: firstOwner }, { Owner: secondOwner }] })
+		// 	.sort('Week Owner')
+		// 	.exec((err, data) => {
+		// 		if(err) console.log(err);
 
-				console.log(data);
-				res.json(data)
-			});
+		// 		console.log(data);
+		// 		res.json(data)
+		// 	});
+
+		WeeklyResult.find({}, (err, data) => {
+			console.log(data)
+			console.log(err)
+		})
 	});
 
 	app.post('/api/leaguecomparison', (req, res) => {
-		const week = req.body.week;
+		const week = 12;
 		WeeklyResult.aggregate([
 			{
 				$match: { Week: { $lte: week }}
@@ -62,6 +67,7 @@ module.exports = function(app) {
 			}
 		], (err, data) => {
 			console.log(data);
+			console.log(err)
 			res.json(data);
 		});
 	});
