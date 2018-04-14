@@ -3,8 +3,8 @@ const app = express();
 
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
-const Result = require('./models/models');
-const routes = require('./routes/routes');
+const Result = require('./models');
+const routes = require('./routes');
 
 
 //bring in dotenv variables
@@ -17,14 +17,17 @@ console.log(URI)
 
 mongoose.Promise = global.Promise;
 
+//easy debugging
+mongoose.set('debug', true);
+
 //open the connection to the database
-const conn = mongoose.connect(URI, {
+const conn = mongoose.createConnection(URI, {
   useMongoClient: true,
   keepAlive: true
 })
+console.log(conn)
 
-//easy debugging
-mongoose.set('debug', true);
+
 
 //add middleware
 app.use(bodyParser.urlencoded({ extended: true }));

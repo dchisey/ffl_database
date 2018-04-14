@@ -1,6 +1,6 @@
 'use strict';
 const mongoose = require('mongoose');
-const Result = require('../models/models');
+const Result = require('./models');
 
 exports.sendAllData = function(req, res) {	
 	let ent = Result.find({}, function(err, entry) {

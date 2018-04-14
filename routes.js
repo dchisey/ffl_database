@@ -1,8 +1,8 @@
 'use strict';
 
-const data = require('../controllers/controllers');
+const data = require('./controllers');
 const mongoose = require('mongoose');
-const WeeklyResult = require('../models/models');
+const WeeklyResult = require('./models');
 
 
 module.exports = function(app) {
