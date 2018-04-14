@@ -23,9 +23,9 @@ let resultSchema = new Schema({
 	meanMinus: Number,
 })
 
-resultSchema.methods.sortBy = function(err, results) {
+// resultSchema.methods.sortBy = function(err, results) {
 
-}
+// }
 
 let WeeklyResult = mongoose.model('result', resultSchema);
 

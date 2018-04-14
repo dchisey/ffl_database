@@ -6,9 +6,9 @@ const mongoose = require('mongoose');
 const Result = require('./models/models');
 const routes = require('./routes/routes');
 
+
 //bring in dotenv variables
 require('dotenv').config();
-
 
 const PORT = process.env.PORT || 3000;
 const URI = process.env.DB_URI;
